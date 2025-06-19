@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "easy-python"
+version = "1.0.0"
+description = "Pythonの真の文法 - BNFで学ぶPython入門"
+authors = [
+    {name = "著者名", email = "author@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+dependencies = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.4.0",
+    "pymdown-extensions>=10.3.0",
+    "mkdocs-mermaid2-plugin>=1.1.0",
+    "mkdocs-print-site-plugin>=2.3.0",
+    "pygments>=2.16.0",
+    "jupyter>=1.0.0",
+    "ipykernel>=6.25.0",
+    "black>=23.9.0",
+    "flake8>=6.1.0",
+    "mypy>=1.6.0",
+    "ast-tools>=0.2.0",
+    "tokenize-ue>=1.1.0",
+    "markdown>=3.5.0",
+    "python-markdown-math>=0.8"
+]
+
+[project.urls]
+Repository = "https://github.com/your-username/easy-python"
+Documentation = "https://your-username.github.io/easy-python/"
+
+[project.scripts]
+easy-python-serve = "scripts.serve:main"
+easy-python-build = "scripts.build:main"
+easy-python-validate = "scripts.validate:main"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | site
+)/
+'''
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    "venv",
+    "site"
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+exclude = [
+    "build/",
+    "site/",
+    "venv/"
+]

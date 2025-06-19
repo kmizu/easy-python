@@ -1,7 +1,7 @@
 site_name: 'Pythonの真の文法 - BNFで学ぶPython入門'
-site_author: '著者名'
+site_author: '水島宏太'
 site_description: 'プログラミング初心者のためのPython文法書'
-site_url: 'http://localhost:8000/'
+site_url: 'https://kmizu.github.io/easy-python/'
 
 theme:
   name: material
@@ -69,36 +69,29 @@ extra_javascript:
 
 nav:
   - はじめに: index.md
-  - 第1部 プログラミングとPythonの世界へようこそ:
-    - 第1章 プログラミングとは何か: part1/chapter01.md
-    - 第2章 Python環境のセットアップと実行の仕組み: part1/chapter02.md
-  - 第2部 Pythonの基本構造を理解する:
-    - 第3章 Pythonプログラムの構造と実行: part2/chapter03.md
-    - 第4章 リテラルと基本的なデータ型: part2/chapter04.md
-  - 第3部 式と文の文法:
-    - 第5章 式（Expression）の文法と評価: part3/chapter05.md
-    - 第6章 変数と代入文: part3/chapter06.md
-    - 第7章 制御構造の文法と実行フロー: part3/chapter07.md
-  - 第4部 データ構造の文法と操作:
-    - 第8章 リスト（list）の文法と実行時動作: part4/chapter08.md
-    - 第9章 タプル、辞書、セットの文法と特性: part4/chapter09.md
-    - 第10章 文字列の高度な文法と処理: part4/chapter10.md
-  - 第5部 関数とモジュール:
-    - 第11章 関数定義の文法と実行: part5/chapter11.md
-    - 第12章 スコープとクロージャ: part5/chapter12.md
-    - 第13章 モジュールとパッケージ: part5/chapter13.md
-    - 第14章 再帰とPythonインタプリタの実行モデル: part5/chapter14.md
-  - 第6部 オブジェクト指向プログラミング:
-    - 第15章 クラス定義の文法と実行: part6/chapter15.md
-    - 第16章 継承とポリモーフィズム: part6/chapter16.md
-    - 第17章 特殊メソッドとプロトコル: part6/chapter17.md
-  - 第7部 例外処理と高度な機能:
-    - 第18章 例外処理の文法と実行フロー: part7/chapter18.md
-    - 第19章 ジェネレータと非同期処理: part7/chapter19.md
-    - 第20章 型ヒントとアノテーション: part7/chapter20.md
-  - 第8部 Pythonの内部動作:
-    - 第21章 Pythonの実行モデル: part8/chapter21.md
-    - 第22章 メタプログラミング: part8/chapter22.md
+  - 第1部 基礎編:
+    - 第1章 コンピュータってなに？: chapter01.md
+    - 第2章 データの正体 - 数字と文字の表現: chapter02.md
+    - 第3章 プログラムとの出会い: chapter03.md
+    - 第4章 Pythonと友達になろう: chapter04.md
+    - 第5章 数の世界で遊ぼう: chapter05.md
+    - 第6章 文字と文章を扱おう: chapter06.md
+    - 第7章 変数という魔法の箱: chapter07.md
+  - 第2部 プログラミングの基本:
+    - 第8章 コンピュータに判断させよう: chapter08.md
+    - 第9章 同じことを繰り返そう: chapter09.md
+    - 第10章 データをまとめて整理しよう: chapter10.md
+    - 第11章 関数を作ってみよう: chapter11.md
+    - 第12章 プログラムをファイルに保存しよう: chapter12.md
+    - 第13章 エラーと上手に付き合おう: chapter13.md
+  - 第3部 上級編:
+    - 第14章 クラスとオブジェクト指向プログラミング: chapter14.md
+    - 第15章 イテレータとジェネレータの世界: chapter15.md
+    - 第16章 デコレータと高度な関数機能: chapter16.md
+    - 第17章 非同期プログラミングの世界: chapter17.md
+    - 第18章 テストとデバッグの技術: chapter18.md
+    - 第19章 Python標準ライブラリの宝庫: chapter19.md
+    - 第20章 Python開発のベストプラクティス: chapter20.md
   - 付録:
     - 付録A Python文法の完全なBNF記法: appendix/bnf.md
     - 付録B 標準ライブラリ重要モジュール一覧: appendix/stdlib.md
