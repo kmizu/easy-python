@@ -1,13 +1,12 @@
 site_name: 'Pythonの真の文法 - BNFで学ぶPython入門'
 site_author: '著者名'
 site_description: 'プログラミング初心者のためのPython文法書'
-site_url: 'https://example.com/easy-python'
+site_url: 'http://localhost:8000/'
 
 theme:
   name: material
   language: ja
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.indexes
