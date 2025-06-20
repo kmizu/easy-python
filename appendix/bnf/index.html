@@ -1,0 +1,2024 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="プログラミング初心者のためのPython文法書">
+      
+      
+        <meta name="author" content="水島宏太">
+      
+      
+        <link rel="canonical" href="https://kmizu.github.io/easy-python/appendix/bnf/">
+      
+      
+        <link rel="prev" href="../../chapter20/">
+      
+      
+        <link rel="next" href="../stdlib/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>付録A Python文法の完全なBNF記法 - 楽しくPythonを学ぼう</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apythonbnf" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="楽しくPythonを学ぼう" class="md-header__button md-logo" aria-label="楽しくPythonを学ぼう" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            楽しくPythonを学ぼう
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              付録A Python文法の完全なBNF記法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="楽しくPythonを学ぼう" class="md-nav__button md-logo" aria-label="楽しくPythonを学ぼう" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    楽しくPythonを学ぼう
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    はじめに
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第1部 コンピュータの世界を知る
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            第1部 コンピュータの世界を知る
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第1章 コンピュータってなに？
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第2章 データの正体 - 数字と文字の表現
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第2部 Pythonとの出会い
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            第2部 Pythonとの出会い
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第3章 プログラムとの出会い
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第4章 Pythonと友達になろう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第3部 Pythonで計算してみよう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            第3部 Pythonで計算してみよう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第5章 数の世界で遊ぼう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第6章 文字と文章を扱おう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第7章 変数という魔法の箱
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第4部 プログラムらしくしよう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            第4部 プログラムらしくしよう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第8章 コンピュータに判断させよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第9章 同じことを繰り返そう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第10章 データをまとめて整理しよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第5部 プログラムを構造化しよう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            第5部 プログラムを構造化しよう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第11章 関数を作ってみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第12章 プログラムをファイルに保存しよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第13章 エラーと上手に付き合おう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第6部 オブジェクトという考え方
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            第6部 オブジェクトという考え方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第14章 オブジェクトってなに？
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第15章 クラスを作ってみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第16章 クラスの継承
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第7部 Pythonをもっと深く知ろう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            第7部 Pythonをもっと深く知ろう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第17章 Pythonの内部構造を覗いてみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第18章 文法の正体を知ろう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第19章 高度な機能を使ってみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第20章 型ヒントで安全なプログラム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    付録
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            付録
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    付録A Python文法の完全なBNF記法
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録A Python文法の完全なBNF記法
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      BNF記法の読み方
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログラム全体の構造
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      文（Statement）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文（Statement）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本的な文の構造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      式文と代入文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      制御構造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      フロー制御文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他の文
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      関数とクラス定義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="関数とクラス定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      関数定義
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      クラス定義
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      デコレータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      非同期文
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      式（Expression）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="式（Expression）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本的な式の構造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      論理演算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      比較演算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      算術演算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      アトム式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      リストと辞書の内包表記
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      引数リスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他の式要素
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      リテラル
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リテラル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      数値リテラル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字列リテラル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      識別子とキーワード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      演算子優先順位（高い順）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      特殊な構文要素
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="特殊な構文要素">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-310" class="md-nav__link">
+    <span class="md-ellipsis">
+      マッチ文（Python 3.10+）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      型アノテーション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      字句解析要素
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字句解析要素">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      トークンの種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      演算子とデリミタ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stdlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録B 標準ライブラリ重要モジュール一覧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pep8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録C PEP 8 スタイルガイド要約
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録D よくあるエラーメッセージと対処法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="apythonbnf">付録A：Python文法の完全なBNF記法<a class="headerlink" href="#apythonbnf" title="Permanent link">&para;</a></h1>
+<p>この付録では、Python言語の文法を完全なBNF（Backus-Naur Form）記法で記述します。これはPython公式ドキュメントの文法定義を基に、本書で説明した内容を体系的にまとめたものです。</p>
+<h2 id="bnf">BNF記法の読み方<a class="headerlink" href="#bnf" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>::=</code> は「定義される」を意味します</li>
+<li><code>|</code> は「または」を意味します（選択肢）</li>
+<li><code>[]</code> は省略可能な要素を表します</li>
+<li><code>{}</code> は0回以上の繰り返しを表します</li>
+<li><code>()</code> はグループ化を表します</li>
+<li><code>*</code> は0回以上の繰り返し</li>
+<li><code>+</code> は1回以上の繰り返し</li>
+</ul>
+<h2 id="_1">プログラム全体の構造<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>file_input <span class="o">::=</span> (NEWLINE | stmt)* ENDMARKER
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>interactive_input <span class="o">::=</span> [stmt_list] NEWLINE | compound_stmt NEWLINE
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>eval_input <span class="o">::=</span> testlist NEWLINE* ENDMARKER
+</span></code></pre></div>
+<h2 id="statement">文（Statement）<a class="headerlink" href="#statement" title="Permanent link">&para;</a></h2>
+<h3 id="_2">基本的な文の構造<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>stmt <span class="o">::=</span> simple_stmt | compound_stmt
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>simple_stmt <span class="o">::=</span> small_stmt (&#39;;&#39; small_stmt)* [&#39;;&#39;] NEWLINE
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>small_stmt <span class="o">::=</span> (expr_stmt | print_stmt | del_stmt | pass_stmt | flow_stmt |
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>               import_stmt | global_stmt | nonlocal_stmt | assert_stmt)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>compound_stmt <span class="o">::=</span> if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | 
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>                  funcdef | classdef | decorated | async_stmt
+</span></code></pre></div>
+<h3 id="_3">式文と代入文<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>expr_stmt <span class="o">::=</span> testlist_star_expr (annassign | augassign (yield_expr | testlist) |
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>              (&#39;=&#39; (yield_expr | testlist_star_expr))*)
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>annassign <span class="o">::=</span> &#39;:&#39; test [&#39;=&#39; (yield_expr | testlist)]
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>testlist_star_expr <span class="o">::=</span> (test | star_expr) (&#39;,&#39; (test | star_expr))* [&#39;,&#39;]
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>augassign <span class="o">::=</span> (&#39;+=&#39; | &#39;-=&#39; | &#39;*=&#39; | &#39;@=&#39; | &#39;/=&#39; | &#39;%=&#39; | &#39;&amp;=&#39; | &#39;|=&#39; | &#39;^=&#39; |
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>              &#39;&lt;<span class="p">&lt;</span><span class="nc">=&#39; | &#39;</span><span class="p">&gt;</span>&gt;=&#39; | &#39;**=&#39; | &#39;//=&#39;)
+</span></code></pre></div>
+<h3 id="_4">制御構造<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="if">if文<a class="headerlink" href="#if" title="Permanent link">&para;</a></h4>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>if_stmt <span class="o">::=</span> &#39;if&#39; namedexpr_test &#39;:&#39; suite (&#39;elif&#39; namedexpr_test &#39;:&#39; suite)* [&#39;else&#39; &#39;:&#39; suite]
+</span></code></pre></div>
+<h4 id="while">while文<a class="headerlink" href="#while" title="Permanent link">&para;</a></h4>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>while_stmt <span class="o">::=</span> &#39;while&#39; namedexpr_test &#39;:&#39; suite [&#39;else&#39; &#39;:&#39; suite]
+</span></code></pre></div>
+<h4 id="for">for文<a class="headerlink" href="#for" title="Permanent link">&para;</a></h4>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>for_stmt <span class="o">::=</span> &#39;for&#39; exprlist &#39;in&#39; testlist &#39;:&#39; suite [&#39;else&#39; &#39;:&#39; suite]
+</span></code></pre></div>
+<h4 id="try">try文<a class="headerlink" href="#try" title="Permanent link">&para;</a></h4>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>try_stmt <span class="o">::=</span> (&#39;try&#39; &#39;:&#39; suite
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>              ((except_clause &#39;:&#39; suite)+
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>               [&#39;else&#39; &#39;:&#39; suite]
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>               [&#39;finally&#39; &#39;:&#39; suite] |
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>               &#39;finally&#39; &#39;:&#39; suite))
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>except_clause <span class="o">::=</span> &#39;except&#39; [test [&#39;as&#39; identifier]]
+</span></code></pre></div>
+<h4 id="with">with文<a class="headerlink" href="#with" title="Permanent link">&para;</a></h4>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>with_stmt <span class="o">::=</span> &#39;with&#39; with_item (&#39;,&#39; with_item)* &#39;:&#39; suite
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>with_item <span class="o">::=</span> test [&#39;as&#39; expr]
+</span></code></pre></div>
+<h3 id="_5">フロー制御文<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>flow_stmt <span class="o">::=</span> break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>break_stmt <span class="o">::=</span> &#39;break&#39;
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>continue_stmt <span class="o">::=</span> &#39;continue&#39;
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>return_stmt <span class="o">::=</span> &#39;return&#39; [testlist]
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>yield_stmt <span class="o">::=</span> yield_expr
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>raise_stmt <span class="o">::=</span> &#39;raise&#39; [test [&#39;from&#39; test]]
+</span></code></pre></div>
+<h3 id="_6">その他の文<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>del_stmt <span class="o">::=</span> &#39;del&#39; exprlist
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>pass_stmt <span class="o">::=</span> &#39;pass&#39;
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>import_stmt <span class="o">::=</span> import_name | import_from
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>import_name <span class="o">::=</span> &#39;import&#39; dotted_as_names
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>import_from <span class="o">::=</span> (&#39;from&#39; ((&#39;.&#39; | &#39;...&#39;)* dotted_name | (&#39;.&#39; | &#39;...&#39;)+)
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>               &#39;import&#39; (&#39;*&#39; | &#39;(&#39; import_as_names &#39;)&#39; | import_as_names))
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>global_stmt <span class="o">::=</span> &#39;global&#39; identifier (&#39;,&#39; identifier)*
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>nonlocal_stmt <span class="o">::=</span> &#39;nonlocal&#39; identifier (&#39;,&#39; identifier)*
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>assert_stmt <span class="o">::=</span> &#39;assert&#39; test [&#39;,&#39; test]
+</span></code></pre></div>
+<h2 id="_7">関数とクラス定義<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">関数定義<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>funcdef <span class="o">::=</span> &#39;def&#39; identifier parameters [&#39;-&gt;&#39; test] &#39;:&#39; suite
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>parameters <span class="o">::=</span> &#39;(&#39; [typedargslist] &#39;)&#39;
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>typedargslist <span class="o">::=</span> (tfpdef [&#39;=&#39; test] (&#39;,&#39; tfpdef [&#39;=&#39; test])* [&#39;,&#39; [
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>                   &#39;*&#39; [tfpdef] (&#39;,&#39; tfpdef [&#39;=&#39; test])* [&#39;,&#39; [&#39;**&#39; tfpdef [&#39;,&#39;]]] |
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>                   &#39;**&#39; tfpdef [&#39;,&#39;]]] |
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>                   &#39;*&#39; [tfpdef] (&#39;,&#39; tfpdef [&#39;=&#39; test])* [&#39;,&#39; [&#39;**&#39; tfpdef [&#39;,&#39;]]] |
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>                   &#39;**&#39; tfpdef [&#39;,&#39;])
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>tfpdef <span class="o">::=</span> identifier [&#39;:&#39; test]
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>varargslist <span class="o">::=</span> (vfpdef [&#39;=&#39; test] (&#39;,&#39; vfpdef [&#39;=&#39; test])* [&#39;,&#39; [
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>                 &#39;*&#39; [vfpdef] (&#39;,&#39; vfpdef [&#39;=&#39; test])* [&#39;,&#39; [&#39;**&#39; vfpdef [&#39;,&#39;]]] |
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>                 &#39;**&#39; vfpdef [&#39;,&#39;]]] |
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>                 &#39;*&#39; [vfpdef] (&#39;,&#39; vfpdef [&#39;=&#39; test])* [&#39;,&#39; [&#39;**&#39; vfpdef [&#39;,&#39;]]] |
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>                 &#39;**&#39; vfpdef [&#39;,&#39;])
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>vfpdef <span class="o">::=</span> identifier
+</span></code></pre></div>
+<h3 id="_9">クラス定義<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>classdef <span class="o">::=</span> &#39;class&#39; identifier [&#39;(&#39; [arglist] &#39;)&#39;] &#39;:&#39; suite
+</span></code></pre></div>
+<h3 id="_10">デコレータ<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>decorated <span class="o">::=</span> decorators (classdef | funcdef | async_funcdef)
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>decorators <span class="o">::=</span> decorator+
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>decorator <span class="o">::=</span> &#39;@&#39; dotted_name [&#39;(&#39; [arglist] &#39;)&#39;] NEWLINE
+</span></code></pre></div>
+<h3 id="_11">非同期文<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>async_stmt <span class="o">::=</span> &#39;async&#39; (funcdef | with_stmt | for_stmt)
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>async_funcdef <span class="o">::=</span> &#39;async&#39; funcdef
+</span></code></pre></div>
+<h2 id="expression">式（Expression）<a class="headerlink" href="#expression" title="Permanent link">&para;</a></h2>
+<h3 id="_12">基本的な式の構造<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>test <span class="o">::=</span> or_test [&#39;if&#39; or_test &#39;else&#39; test] | lambdef
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>test_nocond <span class="o">::=</span> or_test | lambdef_nocond
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>lambdef <span class="o">::=</span> &#39;lambda&#39; [varargslist] &#39;:&#39; test
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>lambdef_nocond <span class="o">::=</span> &#39;lambda&#39; [varargslist] &#39;:&#39; test_nocond
+</span></code></pre></div>
+<h3 id="_13">論理演算<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>or_test <span class="o">::=</span> and_test (&#39;or&#39; and_test)*
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>and_test <span class="o">::=</span> not_test (&#39;and&#39; not_test)*
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>not_test <span class="o">::=</span> &#39;not&#39; not_test | comparison
+</span></code></pre></div>
+<h3 id="_14">比較演算<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>comparison <span class="o">::=</span> expr (comp_op expr)*
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>comp_op <span class="o">::=</span> &#39;<span class="p">&lt;</span><span class="nc">&#39; | &#39;</span><span class="p">&gt;</span>&#39; | &#39;==&#39; | &#39;&gt;=&#39; | &#39;&lt;=&#39; | &#39;&lt;&gt;&#39; | &#39;!=&#39; |
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>            &#39;in&#39; | &#39;not&#39; &#39;in&#39; | &#39;is&#39; | &#39;is&#39; &#39;not&#39;
+</span></code></pre></div>
+<h3 id="_15">算術演算<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>expr <span class="o">::=</span> xor_expr (&#39;|&#39; xor_expr)*
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>xor_expr <span class="o">::=</span> and_expr (&#39;^&#39; and_expr)*
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>and_expr <span class="o">::=</span> shift_expr (&#39;&amp;&#39; shift_expr)*
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>shift_expr <span class="o">::=</span> arith_expr ((&#39;&lt;<span class="p">&lt;</span><span class="nc">&#39; | &#39;</span><span class="p">&gt;</span>&gt;&#39;) arith_expr)*
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>arith_expr <span class="o">::=</span> term ((&#39;+&#39; | &#39;-&#39;) term)*
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>term <span class="o">::=</span> factor ((&#39;*&#39; | &#39;@&#39; | &#39;/&#39; | &#39;%&#39; | &#39;//&#39;) factor)*
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>factor <span class="o">::=</span> (&#39;+&#39; | &#39;-&#39; | &#39;~&#39;) factor | power
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>power <span class="o">::=</span> atom_expr [&#39;**&#39; factor]
+</span></code></pre></div>
+<h3 id="_16">アトム式<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>atom_expr <span class="o">::=</span> [&#39;await&#39;] atom trailer*
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>atom <span class="o">::=</span> (&#39;(&#39; [yield_expr | testlist_comp] &#39;)&#39; |
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>          &#39;[&#39; [listmaker] &#39;]&#39; |
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>          &#39;{&#39; [dictorsetmaker] &#39;}&#39; |
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>          &#39;`&#39; testlist1 &#39;`&#39; |
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>          identifier | number | string+)
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>trailer <span class="o">::=</span> &#39;(&#39; [arglist] &#39;)&#39; | &#39;[&#39; subscriptlist &#39;]&#39; | &#39;.&#39; identifier
+</span></code></pre></div>
+<h3 id="_17">リストと辞書の内包表記<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>listmaker <span class="o">::=</span> (namedexpr_test | star_expr) ( comp_for | (&#39;,&#39; (namedexpr_test | star_expr))* [&#39;,&#39;] )
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>testlist_comp <span class="o">::=</span> (namedexpr_test | star_expr) ( comp_for | (&#39;,&#39; (namedexpr_test | star_expr))* [&#39;,&#39;] )
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>dictorsetmaker <span class="o">::=</span> ( ((test &#39;:&#39; test | &#39;**&#39; expr)
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>                     (comp_for | (&#39;,&#39; (test &#39;:&#39; test | &#39;**&#39; expr))* [&#39;,&#39;])) |
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>                    ((test | star_expr)
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>                     (comp_for | (&#39;,&#39; (test | star_expr))* [&#39;,&#39;])) )
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>comp_for <span class="o">::=</span> [&#39;async&#39;] &#39;for&#39; exprlist &#39;in&#39; or_test [comp_iter]
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>comp_iter <span class="o">::=</span> comp_for | comp_if
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>comp_if <span class="o">::=</span> &#39;if&#39; test_nocond [comp_iter]
+</span></code></pre></div>
+<h3 id="_18">引数リスト<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>arglist <span class="o">::=</span> argument (&#39;,&#39; argument)* [&#39;,&#39;]
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>argument <span class="o">::=</span> ( test [comp_for] |
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>               test &#39;=&#39; test |
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>               &#39;**&#39; test |
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>               &#39;*&#39; test )
+</span></code></pre></div>
+<h3 id="_19">その他の式要素<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>subscriptlist <span class="o">::=</span> subscript (&#39;,&#39; subscript)* [&#39;,&#39;]
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>subscript <span class="o">::=</span> test | [test] &#39;:&#39; [test] [&#39;:&#39; [test]]
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>exprlist <span class="o">::=</span> (expr | star_expr) (&#39;,&#39; (expr | star_expr))* [&#39;,&#39;]
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>testlist <span class="o">::=</span> test (&#39;,&#39; test)* [&#39;,&#39;]
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>star_expr <span class="o">::=</span> &#39;*&#39; expr
+</span></code></pre></div>
+<h2 id="_20">リテラル<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<h3 id="_21">数値リテラル<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>number <span class="o">::=</span> integer | floatnumber | imagnumber
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>integer <span class="o">::=</span> decinteger | bininteger | octinteger | hexinteger
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>decinteger <span class="o">::=</span> nonzerodigit ([&quot;_&quot;] digit)* | &quot;0&quot;+ ([&quot;_&quot;] &quot;0&quot;)*
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>bininteger <span class="o">::=</span> &quot;0&quot; (&quot;b&quot; | &quot;B&quot;) ([&quot;_&quot;] bindigit)+
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>octinteger <span class="o">::=</span> &quot;0&quot; (&quot;o&quot; | &quot;O&quot;) ([&quot;_&quot;] octdigit)+
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>hexinteger <span class="o">::=</span> &quot;0&quot; (&quot;x&quot; | &quot;X&quot;) ([&quot;_&quot;] hexdigit)+
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>floatnumber <span class="o">::=</span> pointfloat | exponentfloat
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>pointfloat <span class="o">::=</span> [digitpart] fraction | digitpart &quot;.&quot;
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>exponentfloat <span class="o">::=</span> (digitpart | pointfloat) exponent
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>digitpart <span class="o">::=</span> digit ([&quot;_&quot;] digit)*
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>fraction <span class="o">::=</span> &quot;.&quot; digitpart
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>exponent <span class="o">::=</span> (&quot;e&quot; | &quot;E&quot;) [&quot;+&quot; | &quot;-&quot;] digitpart
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>imagnumber <span class="o">::=</span> (floatnumber | digitpart) (&quot;j&quot; | &quot;J&quot;)
+</span></code></pre></div>
+<h3 id="_22">文字列リテラル<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>string <span class="o">::=</span> stringprefix? (shortstring | longstring)
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>stringprefix <span class="o">::=</span> &quot;r&quot; | &quot;u&quot; | &quot;R&quot; | &quot;U&quot; | &quot;f&quot; | &quot;F&quot; | &quot;fr&quot; | &quot;Fr&quot; | &quot;fR&quot; | &quot;FR&quot; | &quot;rf&quot; | &quot;rF&quot; | &quot;Rf&quot; | &quot;RF&quot;
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>shortstring <span class="o">::=</span> &quot;&#39;&quot; shortstringitem* &quot;&#39;&quot; | &#39;&quot;&#39; shortstringitem* &#39;&quot;&#39;
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>longstring <span class="o">::=</span> &quot;&#39;&#39;&#39;&quot; longstringitem* &quot;&#39;&#39;&#39;&quot; | &#39;&quot;&quot;&quot;&#39; longstringitem* &#39;&quot;&quot;&quot;&#39;
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>shortstringitem <span class="o">::=</span> shortstringchar | stringescapeseq
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>longstringitem <span class="o">::=</span> longstringchar | stringescapeseq
+</span></code></pre></div>
+<h3 id="_23">識別子とキーワード<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>identifier <span class="o">::=</span> (letter | &quot;_&quot;) (letter | digit | &quot;_&quot;)*
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>letter <span class="o">::=</span> lowercase | uppercase
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>lowercase <span class="o">::=</span> &quot;a&quot;...&quot;z&quot;
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>uppercase <span class="o">::=</span> &quot;A&quot;...&quot;Z&quot;
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>digit <span class="o">::=</span> &quot;0&quot;...&quot;9&quot;
+</span></code></pre></div>
+<h4 id="_24">予約語（キーワード）<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>False      await      else       import     pass
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>None       break      except     in         raise
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>True       class      finally    is         return
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>and        continue   for        lambda     try
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>as         def        from       nonlocal   while
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>assert     del        global     not        with
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>async      elif       if         or         yield
+</span></code></pre></div>
+<h2 id="_25">演算子優先順位（高い順）<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
+<ol>
+<li><code>(expressions...)</code>, <code>[expressions...]</code>, <code>{key: value...}</code>, <code>{expressions...}</code></li>
+<li><code>x[index]</code>, <code>x[index:index]</code>, <code>x(arguments...)</code>, <code>x.attribute</code></li>
+<li><code>await x</code></li>
+<li><code>**</code> (冪乗)</li>
+<li><code>+x</code>, <code>-x</code>, <code>~x</code> (単項演算子)</li>
+<li><code>*</code>, <code>@</code>, <code>/</code>, <code>//</code>, <code>%</code></li>
+<li><code>+</code>, <code>-</code> (二項演算子)</li>
+<li><code>&lt;&lt;</code>, <code>&gt;&gt;</code></li>
+<li><code>&amp;</code></li>
+<li><code>^</code></li>
+<li><code>|</code></li>
+<li><code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>is</code>, <code>is not</code>, <code>in</code>, <code>not in</code></li>
+<li><code>not x</code></li>
+<li><code>and</code></li>
+<li><code>or</code></li>
+<li><code>if</code> – <code>else</code> (条件式)</li>
+<li><code>lambda</code></li>
+<li><code>:=</code> (セイウチ演算子)</li>
+</ol>
+<h2 id="_26">特殊な構文要素<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
+<h3 id="python-310">マッチ文（Python 3.10+）<a class="headerlink" href="#python-310" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>match_stmt <span class="o">::=</span> &quot;match&quot; subject_expr &#39;:&#39; NEWLINE INDENT case_block+ DEDENT
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>subject_expr <span class="o">::=</span> star_named_expression (&#39;,&#39; star_named_expressions)? [&#39;,&#39;]
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>case_block <span class="o">::=</span> &quot;case&quot; patterns [guard] &#39;:&#39; block
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>guard <span class="o">::=</span> &#39;if&#39; named_expression
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>patterns <span class="o">::=</span> open_sequence_pattern | pattern
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>pattern <span class="o">::=</span> as_pattern | or_pattern
+</span></code></pre></div>
+<h3 id="_27">型アノテーション<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>annassign <span class="o">::=</span> &#39;:&#39; test [&#39;=&#39; (yield_expr | testlist)]
+</span></code></pre></div>
+<h2 id="_28">字句解析要素<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h2>
+<h3 id="_29">トークンの種類<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>NEWLINE <span class="o">::=</span> [\r\n]+
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>INDENT <span class="o">::=</span> 空白文字の増加
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>DEDENT <span class="o">::=</span> 空白文字の減少
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>NAME <span class="o">::=</span> identifier
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>NUMBER <span class="o">::=</span> number
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>STRING <span class="o">::=</span> string
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>COMMENT <span class="o">::=</span> &#39;#&#39; [^\r\n]*
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>NL <span class="o">::=</span> NEWLINE | COMMENT
+</span></code></pre></div>
+<h3 id="_30">演算子とデリミタ<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>+       -       *       **      /       //      %      @
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>&lt;&lt;      &gt;&gt;      &amp;       |       ^       ~       :=
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>&lt;       &gt;       &lt;=      &gt;=      ==      !=
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>(       )       [       ]       {       }
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>,       :       .       ;       @       =       -&gt;
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>+=      -=      *=      /=      //=     %=      @=
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>&amp;=      |=      ^=      &gt;&gt;=     &lt;&lt;=     **=
+</span></code></pre></div>
+<h2 id="_31">まとめ<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
+<p>この完全なBNF定義は、Pythonプログラムのあらゆる構文要素を網羅しています。実際のPythonインタプリタは、この文法定義に基づいて構文解析を行い、抽象構文木（AST）を構築します。</p>
+<p>各章で学んだ個別の文法要素が、この包括的な定義の中でどのように位置づけられているかを確認することで、Python言語の体系的な理解を深めることができます。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

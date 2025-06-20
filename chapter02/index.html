@@ -1,0 +1,2134 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="プログラミング初心者のためのPython文法書">
+      
+      
+        <meta name="author" content="水島宏太">
+      
+      
+        <link rel="canonical" href="https://kmizu.github.io/easy-python/chapter02/">
+      
+      
+        <link rel="prev" href="../chapter01/">
+      
+      
+        <link rel="next" href="../chapter03/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>第2章 データの正体 - 数字と文字の表現 - 楽しくPythonを学ぼう</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="楽しくPythonを学ぼう" class="md-header__button md-logo" aria-label="楽しくPythonを学ぼう" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            楽しくPythonを学ぼう
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第2章 データの正体 - 数字と文字の表現
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="楽しくPythonを学ぼう" class="md-nav__button md-logo" aria-label="楽しくPythonを学ぼう" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    楽しくPythonを学ぼう
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    はじめに
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第1部 コンピュータの世界を知る
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            第1部 コンピュータの世界を知る
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第1章 コンピュータってなに？
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    第2章 データの正体 - 数字と文字の表現
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    第2章 データの正体 - 数字と文字の表現
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビット（0と1）からバイトへ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ビット（0と1）からバイトへ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビットだけでは足りない
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビットを組み合わせてパワーアップ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      バイトの誕生
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      【実行】年齢や体重を2進数で表現してみよう
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【実行】年齢や体重を2進数で表現してみよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1102" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ1：10進数から2進数への変換方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ2：あなたの年齢を2進数にしてみよう
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3：体重を2進数にしてみよう
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ4：コンピュータでの実際の保存方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンピュータは文字をどう覚えているか
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コンピュータは文字をどう覚えているか">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字コードの仕組み
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ascii" class="md-nav__link">
+    <span class="md-ellipsis">
+      ASCII コード（アスキーコード）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      日本語の文字コード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      【実行】自分の名前の文字コードを調べてみよう
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【実行】自分の名前の文字コードを調べてみよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ1：オンライン文字コード変換ツールを使う
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ2：結果を理解してみよう
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3：英語名と比較してみよう
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ4：文字化けの原因を理解しよう
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      メモリという名前の記憶装置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メモリという名前の記憶装置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      メモリの仕組み
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      メモリの種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      データの流れ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      データ型の基本概念
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データ型の基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要なデータ型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      データ型が重要な理由
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      実際のデータサイズを体感してみよう
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実際のデータサイズを体感してみよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      テキストデータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      画像データ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      音楽データ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      動画データ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ：データ表現の仕組み
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="まとめ：データ表現の仕組み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      数字の表現
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字の表現
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      メモリの仕組み
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイズの感覚
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第2部 Pythonとの出会い
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            第2部 Pythonとの出会い
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第3章 プログラムとの出会い
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第4章 Pythonと友達になろう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第3部 Pythonで計算してみよう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            第3部 Pythonで計算してみよう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第5章 数の世界で遊ぼう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第6章 文字と文章を扱おう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第7章 変数という魔法の箱
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第4部 プログラムらしくしよう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            第4部 プログラムらしくしよう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第8章 コンピュータに判断させよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第9章 同じことを繰り返そう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第10章 データをまとめて整理しよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第5部 プログラムを構造化しよう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            第5部 プログラムを構造化しよう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第11章 関数を作ってみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第12章 プログラムをファイルに保存しよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第13章 エラーと上手に付き合おう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第6部 オブジェクトという考え方
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            第6部 オブジェクトという考え方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第14章 オブジェクトってなに？
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第15章 クラスを作ってみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第16章 クラスの継承
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    第7部 Pythonをもっと深く知ろう
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            第7部 Pythonをもっと深く知ろう
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第17章 Pythonの内部構造を覗いてみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第18章 文法の正体を知ろう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第19章 高度な機能を使ってみよう
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第20章 型ヒントで安全なプログラム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    付録
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            付録
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/bnf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録A Python文法の完全なBNF記法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/stdlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録B 標準ライブラリ重要モジュール一覧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/pep8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録C PEP 8 スタイルガイド要約
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    付録D よくあるエラーメッセージと対処法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2-">第2章：データの正体 - 数字と文字の表現<a class="headerlink" href="#2-" title="Permanent link">&para;</a></h1>
+<p>前の章で、コンピュータが0と1だけで動いていることを学びました。でも、「0と1だけで、どうやって私たちの名前や写真を表現できるの？」と疑問に思いませんでしたか？この章では、その仕組みを詳しく見ていきましょう。</p>
+<h2 id="01">ビット（0と1）からバイトへ<a class="headerlink" href="#01" title="Permanent link">&para;</a></h2>
+<h3 id="_1">ビットだけでは足りない<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>1つのビット（0または1）では、2つの状態しか表現できません。でも、私たちが表現したいものはもっとたくさんあります：</p>
+<ul>
+<li>アルファベットは26文字（A〜Z）</li>
+<li>日本語のひらがなは46文字（あ〜ん）</li>
+<li>数字は10種類（0〜9）</li>
+<li>記号もたくさん（!@#$%など）</li>
+</ul>
+<h3 id="_2">ビットを組み合わせてパワーアップ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>ビットを複数組み合わせると、表現できる種類が飛躍的に増えます：</p>
+<table>
+<thead>
+<tr>
+<th>ビット数</th>
+<th>組み合わせ数</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1ビット</td>
+<td>2種類</td>
+<td>0, 1</td>
+</tr>
+<tr>
+<td>2ビット</td>
+<td>4種類</td>
+<td>00, 01, 10, 11</td>
+</tr>
+<tr>
+<td>3ビット</td>
+<td>8種類</td>
+<td>000, 001, 010, 011, 100, 101, 110, 111</td>
+</tr>
+<tr>
+<td>4ビット</td>
+<td>16種類</td>
+<td>0000〜1111</td>
+</tr>
+<tr>
+<td>8ビット</td>
+<td>256種類</td>
+<td>00000000〜11111111</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">バイトの誕生<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>コンピュータの世界では、<strong>8ビットをまとめて1バイト</strong>と呼びます。1バイトで256種類の異なる値を表現できるので、これがデータの基本単位として使われています。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1バイト = 8ビット = 256通りの組み合わせ
+</span></code></pre></div>
+<h2 id="2">【実行】年齢や体重を2進数で表現してみよう<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>実際に身近な数字を2進数で表現してみましょう。</p>
+<h3 id="1102">ステップ1：10進数から2進数への変換方法<a class="headerlink" href="#1102" title="Permanent link">&para;</a></h3>
+<p>10進数を2進数に変換するには、2で割り続けて余りを記録します。</p>
+<p><strong>例：年齢25歳を2進数にしてみよう</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>25 ÷ 2 = 12 余り 1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>12 ÷ 2 = 6  余り 0
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>6  ÷ 2 = 3  余り 0
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>3  ÷ 2 = 1  余り 1
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>1  ÷ 2 = 0  余り 1
+</span></code></pre></div>
+<p>余りを下から読むと：<strong>11001</strong></p>
+<p>確認してみましょう：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>1×2⁴ + 1×2³ + 0×2² + 0×2¹ + 1×2⁰
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>= 1×16 + 1×8 + 0×4 + 0×2 + 1×1
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>= 16 + 8 + 0 + 0 + 1
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>= 25 ✓
+</span></code></pre></div></p>
+<h3 id="22">ステップ2：あなたの年齢を2進数にしてみよう<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p><strong>練習問題：</strong>
+あなたの年齢を2進数で表現してください。</p>
+<p><strong>ヒント：よく使われる年齢の2進数</strong>
+- 10歳 → 1010
+- 15歳 → 1111
+- 20歳 → 10100
+- 30歳 → 11110
+- 40歳 → 101000</p>
+<h3 id="32">ステップ3：体重を2進数にしてみよう<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p><strong>例：体重60kgの場合</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>60 ÷ 2 = 30 余り 0
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>30 ÷ 2 = 15 余り 0
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>15 ÷ 2 = 7  余り 1
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>7  ÷ 2 = 3  余り 1
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>3  ÷ 2 = 1  余り 1
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>1  ÷ 2 = 0  余り 1
+</span></code></pre></div>
+<p>答え：<strong>111100</strong></p>
+<h3 id="4">ステップ4：コンピュータでの実際の保存方法<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>実際のコンピュータでは、数値は決まったビット数で保存されます：</p>
+<p><strong>8ビット（1バイト）で保存する場合：</strong>
+- 25歳 → 00011001
+- 60kg → 00111100</p>
+<p>左側に0を追加して、8ビットにそろえています。これを<strong>ゼロパディング</strong>と言います。</p>
+<h2 id="_4">コンピュータは文字をどう覚えているか<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>数字の次は、文字がどう保存されているかを見てみましょう。</p>
+<h3 id="_5">文字コードの仕組み<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>コンピュータは文字を直接理解できません。そこで、<strong>文字と数字を対応させる表</strong>を作って、文字を数字として保存しています。この対応表を<strong>文字コード</strong>と言います。</p>
+<h3 id="ascii">ASCII コード（アスキーコード）<a class="headerlink" href="#ascii" title="Permanent link">&para;</a></h3>
+<p>最も基本的な文字コードが<strong>ASCII</strong>です。英語のアルファベット、数字、記号に番号を割り当てています。</p>
+<p><strong>主要なASCII文字コード：</strong></p>
+<table>
+<thead>
+<tr>
+<th>文字</th>
+<th>10進数</th>
+<th>2進数</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>65</td>
+<td>01000001</td>
+<td>大文字のA</td>
+</tr>
+<tr>
+<td>B</td>
+<td>66</td>
+<td>01000010</td>
+<td>大文字のB</td>
+</tr>
+<tr>
+<td>a</td>
+<td>97</td>
+<td>01100001</td>
+<td>小文字のa</td>
+</tr>
+<tr>
+<td>b</td>
+<td>98</td>
+<td>01100010</td>
+<td>小文字のb</td>
+</tr>
+<tr>
+<td>0</td>
+<td>48</td>
+<td>00110000</td>
+<td>数字のゼロ</td>
+</tr>
+<tr>
+<td>1</td>
+<td>49</td>
+<td>00110001</td>
+<td>数字のイチ</td>
+</tr>
+<tr>
+<td>!</td>
+<td>33</td>
+<td>00100001</td>
+<td>感嘆符</td>
+</tr>
+<tr>
+<td>?</td>
+<td>63</td>
+<td>00111111</td>
+<td>疑問符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">日本語の文字コード<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>日本語には、ひらがな、カタカナ、漢字があり、ASCII だけでは足りません。そこで、より多くの文字を表現できる文字コードが作られました。</p>
+<p><strong>主要な日本語文字コード：</strong></p>
+<ol>
+<li><strong>Shift-JIS</strong>：日本で広く使われた</li>
+<li><strong>EUC-JP</strong>：UNIX系で使われた</li>
+<li><strong>UTF-8</strong>：現在の標準（世界中の文字を表現可能）</li>
+</ol>
+<p><strong>UTF-8での例：</strong>
+- 「あ」→ 11100011 10000001 10000010（3バイト）
+- 「漢」→ 11100110 10100100 10100010（3バイト）</p>
+<p>日本語は1文字で複数バイトを使うため、英語より容量が大きくなります。</p>
+<h2 id="_7">【実行】自分の名前の文字コードを調べてみよう<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>実際にあなたの名前がどんな数字として保存されているか調べてみましょう。</p>
+<h3 id="1">ステップ1：オンライン文字コード変換ツールを使う<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>以下のような無料のウェブサイトで文字コードを調べることができます：</p>
+<ol>
+<li>ブラウザで「文字コード変換 オンライン」と検索</li>
+<li>文字コード変換サイトを開く</li>
+<li>あなたの名前を入力欄に入力</li>
+<li>UTF-8やShift-JISなどの文字コードを選択</li>
+<li>変換結果を確認</li>
+</ol>
+<h3 id="2_1">ステップ2：結果を理解してみよう<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<p><strong>例：「田中」という名前の場合（UTF-8）</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>「田」→ E7 94 B0 (16進数) → 11100111 10010100 10110000 (2進数)
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>「中」→ E4 B8 AD (16進数) → 11100100 10111000 10101101 (2進数)
+</span></code></pre></div>
+<p>つまり、「田中」という2文字は、コンピュータの中では6バイト（48ビット）の0と1の組み合わせとして保存されています。</p>
+<h3 id="3">ステップ3：英語名と比較してみよう<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p><strong>例：「TARO」という名前の場合（ASCII）</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>「T」→ 54 (16進数) → 01010100 (2進数) → 1バイト
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>「A」→ 41 (16進数) → 01000001 (2進数) → 1バイト
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>「R」→ 52 (16進数) → 01010010 (2進数) → 1バイト
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>「O」→ 4F (16進数) → 01001111 (2進数) → 1バイト
+</span></code></pre></div>
+<p>「TARO」は4バイトで表現できます。日本語の「田中」（6バイト）より少ない容量で済みます。</p>
+<h3 id="4_1">ステップ4：文字化けの原因を理解しよう<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
+<p>時々、メールやウェブサイトで文字が変に表示される「文字化け」を見たことがありませんか？</p>
+<p><strong>文字化けの原因：</strong>
+1. 送信側：UTF-8で「こんにちは」を送信
+2. 受信側：Shift-JISとして解釈してしまう
+3. 結果：意味不明な文字が表示される</p>
+<p>これは、同じ数字の組み合わせを異なる文字コード表で解釈してしまうために起こります。</p>
+<h2 id="_8">メモリという名前の記憶装置<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>コンピュータがこれらのデータをどこに保存しているかを理解しましょう。</p>
+<h3 id="_9">メモリの仕組み<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><strong>メモリ</strong>は、コンピュータの一時的な記憶装置です。本棚のように、たくさんの「住所」があり、それぞれの住所に1バイトのデータを保存できます。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>メモリのイメージ：
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>住所     | データ（1バイト）
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>---------|------------------
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>0x1000   | 01001000  (H)
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>0x1001   | 01100101  (e)
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>0x1002   | 01101100  (l)
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>0x1003   | 01101100  (l)
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>0x1004   | 01101111  (o)
+</span></code></pre></div>
+<p>この例では、「Hello」という文字列が住所0x1000から0x1004まで保存されています。</p>
+<h3 id="_10">メモリの種類<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>コンピュータには複数種類のメモリがあります：</p>
+<ol>
+<li><strong>RAM（ランダムアクセスメモリ）</strong></li>
+<li>一時的な作業場所</li>
+<li>電源を切ると内容が消える</li>
+<li>
+<p>高速だが容量は少なめ</p>
+</li>
+<li>
+<p><strong>ストレージ（HDD/SSD）</strong></p>
+</li>
+<li>長期的な保存場所</li>
+<li>電源を切っても内容が残る</li>
+<li>
+<p>低速だが大容量</p>
+</li>
+<li>
+<p><strong>CPU内のレジスタ</strong></p>
+</li>
+<li>最も高速な記憶装置</li>
+<li>容量は極めて少ない</li>
+<li>CPUが計算に使う</li>
+</ol>
+<h3 id="_11">データの流れ<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>プログラムを実行するときのデータの流れ：</p>
+<ol>
+<li><strong>ストレージからRAMへ</strong>：プログラムとデータを読み込み</li>
+<li><strong>RAMからCPUへ</strong>：処理するデータを転送</li>
+<li><strong>CPU内で処理</strong>：計算や判断を実行</li>
+<li><strong>CPUからRAMへ</strong>：結果を保存</li>
+<li><strong>RAMからストレージへ</strong>：必要に応じて長期保存</li>
+</ol>
+<h2 id="_12">データ型の基本概念<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>プログラミングでは、データの種類を<strong>データ型</strong>として分類します。</p>
+<h3 id="_13">主要なデータ型<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>整数型（Integer）</strong></li>
+<li>例：25, -10, 0</li>
+<li>小数点のない数値</li>
+<li>
+<p>計算が高速</p>
+</li>
+<li>
+<p><strong>浮動小数点型（Float）</strong></p>
+</li>
+<li>例：3.14, -2.5, 0.0</li>
+<li>小数点のある数値</li>
+<li>
+<p>近似値として保存</p>
+</li>
+<li>
+<p><strong>文字列型（String）</strong></p>
+</li>
+<li>例：「こんにちは」, "Hello"</li>
+<li>文字の集まり</li>
+<li>
+<p>文字コードで保存</p>
+</li>
+<li>
+<p><strong>論理型（Boolean）</strong></p>
+</li>
+<li>True（真）またはFalse（偽）</li>
+<li>条件判断に使用</li>
+<li>1ビットで表現可能だが、通常1バイト使用</li>
+</ol>
+<h3 id="_14">データ型が重要な理由<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>メモリ効率</strong>：適切な型を選ぶことで無駄な容量を使わない</li>
+<li><strong>処理速度</strong>：型に応じた最適な処理方法を選択</li>
+<li><strong>エラー防止</strong>：意図しない操作を防ぐ</li>
+</ol>
+<p><strong>例：年齢の保存</strong>
+- 不適切：文字列として「25歳」で保存 → 計算できない
+- 適切：整数として25で保存 → 計算可能</p>
+<h2 id="_15">実際のデータサイズを体感してみよう<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>身の回りのデータがどのくらいのサイズかを理解しましょう。</p>
+<h3 id="_16">テキストデータ<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>「こんにちは」（5文字）
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>= 5文字 × 3バイト（UTF-8での日本語1文字）
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>= 15バイト
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>短いメール（200文字程度）
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>= 200文字 × 3バイト
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>= 600バイト
+</span></code></pre></div>
+<h3 id="_17">画像データ<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>スマホ写真（1200万画素）
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>= 1200万ピクセル × 3色（RGB） × 1バイト
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>= 約36MB（圧縮前）
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>実際のJPEG写真
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>= 約3-5MB（圧縮後）
+</span></code></pre></div>
+<h3 id="_18">音楽データ<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>CD音質の音楽（1分間）
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>= 44,100サンプル/秒 × 60秒 × 2チャンネル × 2バイト
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>= 約10MB
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>MP3音楽（1分間）
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>= 約1MB（圧縮後）
+</span></code></pre></div>
+<h3 id="_19">動画データ<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>フルHD動画（1分間、圧縮前）
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>= 1920×1080ピクセル × 30フレーム/秒 × 60秒 × 3色 × 1バイト
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>= 約11GB
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>実際のMP4動画（1分間）
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>= 約50-100MB（圧縮後）
+</span></code></pre></div>
+<h2 id="_20">まとめ：データ表現の仕組み<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p>この章で学んだことをまとめましょう：</p>
+<h3 id="_21">数字の表現<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>コンピュータは2進数（0と1）ですべての数を表現</li>
+<li>8ビット = 1バイトが基本単位</li>
+<li>大きな数は複数バイトを組み合わせて表現</li>
+</ul>
+<h3 id="_22">文字の表現<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>文字は文字コードによって数字に変換</li>
+<li>ASCIIは英語の基本文字セット</li>
+<li>UTF-8は世界中の文字を表現可能</li>
+<li>日本語は1文字で複数バイト必要</li>
+</ul>
+<h3 id="_23">メモリの仕組み<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li>データは住所付きの記憶場所に保存</li>
+<li>RAMは一時的、ストレージは永続的</li>
+<li>データ型によって保存方法が変わる</li>
+</ul>
+<h3 id="_24">サイズの感覚<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>テキスト：軽い（数バイト〜数KB）</li>
+<li>画像：中程度（数MB）</li>
+<li>音楽：中程度（数MB）</li>
+<li>動画：重い（数十〜数百MB）</li>
+</ul>
+<p>次の章では、いよいよプログラムというものに実際に触れてみます。これまで学んだ「0と1の世界」と「データの表現」を基礎として、実際にコンピュータに指示を出してみましょう！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
